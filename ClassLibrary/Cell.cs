@@ -1,0 +1,65 @@
+﻿/**
+ *  Gloria Quezada
+ *  CST-250
+ *  Milestone Project
+ *  Created : 18 September 2023
+ *  Last Updated: 25 September 2023
+ **/
+
+
+namespace ClassLibrary
+{
+    /// <summary>
+    /// This class models a game Cell in a Minesweeper Game. 
+    /// </summary>
+    public class Cell
+    {
+        // ----- ATTRIBUTES -----
+        private int row = -1;
+        private int col = -1;   // short for column
+        private int  liveNeighbors = 0;     // number of neighboring live cells
+        private bool isVisited = false;     // has cell been revealed?
+        private bool isLive = false;        // is cell live (bomb)?
+
+        // ACCESSORS and MUTATORS
+        public int Row { get { return row; } set { row = value; } }
+        public int Col { get { return col; } set { col = value; } }
+        public int LiveNeighbors { get { return liveNeighbors; } set { liveNeighbors = value; } }  
+        public bool IsVisited { get {  return isVisited; } set {  isVisited = value; } }
+        public bool IsLive { get { return isLive; } set { isLive = value; } }
+
+        // ----- CONTRUCTORS -----
+
+        /// <summary>
+        /// Create cell with assigned Row and Column, 
+        ///     and default LiveNeigbors, IsVisited, and IsLive attributes
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="col"></param>
+        public Cell(int row, int col) 
+        {
+            Row = row;
+            Col = col;
+            LiveNeighbors = 0;
+            IsVisited = false; 
+            IsLive = false;
+        }
+
+        // ----- METHODS -----
+        /// <summary>
+        /// ToString() override to display number of live neighbors or if cell is live
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            if (LiveNeighbors == 9) 
+            {
+                return "*";
+            }
+            else
+            {
+                return LiveNeighbors.ToString();
+            }
+        }
+    }
+}
