@@ -55,11 +55,9 @@ namespace ClassLibrary
         /// </summary>
         public void SetUpLiveNeighbors()
         {
-            // Calculate number of live bombs based on dificulty percentage
+            // Calculate number of live bombs based on difficulty percentage
             LiveCells = (Size * Size * Difficulty) / 100;
 
-            // Note user of total live cells on board
-            Console.WriteLine("Number of Live Cells: " + LiveCells);
             // Calculate and update the total number of cells not live ("safe cells")
             SafeCells = (Size * Size) - LiveCells;
 
@@ -243,7 +241,7 @@ namespace ClassLibrary
             FloodFill(x + 1, y - 1);
             // Bottom
             FloodFill(x + 1, y);      
-            // Bottom-Rihgt
+            // Bottom-Right
             FloodFill(x+1, y+1);
         }
 

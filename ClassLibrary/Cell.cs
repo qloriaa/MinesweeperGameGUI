@@ -22,8 +22,6 @@ namespace ClassLibrary
         private bool isLive = false;        // is cell live (bomb)?
 
         // ACCESSORS and MUTATORS
-        public int Row { get { return row; } set { row = value; } }
-        public int Col { get { return col; } set { col = value; } }
         public int LiveNeighbors { get { return liveNeighbors; } set { liveNeighbors = value; } }  
         public bool IsVisited { get {  return isVisited; } set {  isVisited = value; } }
         public bool IsLive { get { return isLive; } set { isLive = value; } }
@@ -38,28 +36,11 @@ namespace ClassLibrary
         /// <param name="col"></param>
         public Cell(int row, int col) 
         {
-            Row = row;
-            Col = col;
+            this.row = row;
+            this.col = col;
             LiveNeighbors = 0;
             IsVisited = false; 
             IsLive = false;
-        }
-
-        // ----- METHODS -----
-        /// <summary>
-        /// ToString() override to display number of live neighbors or if cell is live
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            if (LiveNeighbors == 9) 
-            {
-                return "*";
-            }
-            else
-            {
-                return LiveNeighbors.ToString();
-            }
         }
     }
 }

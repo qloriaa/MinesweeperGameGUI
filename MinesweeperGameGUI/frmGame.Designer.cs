@@ -54,7 +54,7 @@
             // pbEndGame
             // 
             pbEndGame.Image = (Image)resources.GetObject("pbEndGame.Image");
-            pbEndGame.Location = new Point(1207, 274);
+            pbEndGame.Location = new Point(1216, 274);
             pbEndGame.Name = "pbEndGame";
             pbEndGame.Size = new Size(364, 316);
             pbEndGame.SizeMode = PictureBoxSizeMode.StretchImage;

@@ -19,7 +19,6 @@ namespace MinesweeperGameGUI
         public Button[,] btnGrid;
         private Stopwatch time = new Stopwatch();
         private string imgFolderLoc = Directory.GetCurrentDirectory() + "\\Images\\";
-        private int revealed;
 
         /// <summary>
         /// Form Constructor
@@ -104,7 +103,7 @@ namespace MinesweeperGameGUI
         }
 
         /// <summary>
-        /// Clicik event for the buttons on the panel representing a gameboard
+        /// Click event for the buttons on the panel representing a gameboard
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -126,7 +125,6 @@ namespace MinesweeperGameGUI
             else //left or middle click
             {
                 imgName = GetImgName(row, col);
-                revealed++;
             }
 
             // Set Image
@@ -142,7 +140,7 @@ namespace MinesweeperGameGUI
             }
 
             // All safe cells revealed?
-            if (revealed == gameboard.SafeCells)
+            if (gameboard.AllCellsVisited())
             {
                 EndGame("YouWin.png", (sender as Button).Width);
             }
@@ -160,15 +158,17 @@ namespace MinesweeperGameGUI
 
             string showMinesAs;
 
-
+            // Check if Game was lost to display correct message and mine icon
             if (result == "GameOver.png")
             {
                 showMinesAs = "Mine.png";
                 MessageBox.Show("GAME OVER !!\nYou Lose.");
             }
+            // if Game was won display correct message and flag icon
             else
             {
                 showMinesAs = "flag.png";
+
                 // Display message box
                 if (time.Elapsed.Minutes > 0)
                 {
@@ -203,7 +203,6 @@ namespace MinesweeperGameGUI
                 }
             }
             pnlBoard.Enabled = false;
-
         }
 
         private string GetImgName(int row, int col)
