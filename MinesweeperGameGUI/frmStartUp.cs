@@ -54,7 +54,6 @@ namespace MinesweeperGameGUI
                 difficulty = int.Parse(rbHard.Tag.ToString());
             }
 
-
             // Open new form & close this form
             this.Hide();
             frmGame game = new frmGame(size, difficulty);

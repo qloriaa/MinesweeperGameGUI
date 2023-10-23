@@ -45,6 +45,7 @@ namespace ClassLibrary
 
             // Set live cells
             SetUpLiveNeighbors();
+            CalculateLiveNeighbors();
         }
 
         // ----- METHODS -----
