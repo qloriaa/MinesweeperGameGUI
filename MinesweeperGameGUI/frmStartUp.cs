@@ -10,7 +10,7 @@ namespace MinesweeperGameGUI
         {
             InitializeComponent();
 
-            // Add radio button options to Size group box
+            // Add radio button options to Size group box2
             gbSize.Controls.Add(rbSmall);
             gbSize.Controls.Add(rbClassic);
             gbSize.Controls.Add(rbLarge);
@@ -21,11 +21,16 @@ namespace MinesweeperGameGUI
             gbDifficulty.Controls.Add(rbHard);
         }
 
+        /// <summary>
+        /// Create a new Game using selected board settings
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnNewGame_Click(object sender, EventArgs e)
         {
             int size = 0,
                 difficulty = 0;
-            
+
             // Get selected size
             if (rbSmall.Checked)
             {

@@ -1,15 +1,5 @@
 ﻿using ClassLibrary;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace MinesweeperGameGUI
 {
@@ -57,6 +47,8 @@ namespace MinesweeperGameGUI
 
             // Start timer 
             time.Start();
+
+            PrintConsole();
         }
 
         /// <summary>
@@ -203,6 +195,8 @@ namespace MinesweeperGameGUI
                 }
             }
             pnlBoard.Enabled = false;
+
+            DisplayTopScores();
         }
 
         private string GetImgName(int row, int col)
@@ -255,9 +249,32 @@ namespace MinesweeperGameGUI
             this.Close();
         }
 
+        public void DisplayTopScores()
+        {
+            frmHighScore highScores = new frmHighScore(gameboard, time.Elapsed.Seconds);
+            highScores.ShowDialog();
+        }
+
         private void timer_Tick(object sender, EventArgs e)
         {
             lblTimer.Text = "Time Elapsed:  " + time.Elapsed.ToString(@"m\:ss");
+        }
+
+        /// <summary>
+        /// Print initialized gameboard in Debug output console for debugging purposes
+        /// </summary>
+        private void PrintConsole()
+        {
+            // Print gameboard cells
+            for (int col = 0; col < gameboard.Size; col++)
+            {
+                for (int row = 0; row < gameboard.Size; row++)
+                {
+                    Debug.Write("| " + gameboard.Grid[row, col].ToString() + " ");
+                }
+
+                Debug.WriteLine("");
+            }
         }
     }
 }

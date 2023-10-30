@@ -164,7 +164,8 @@
             Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4, 3, 4, 3);
             Name = "frmStartUp";
-            Text = "New Game";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "*5";
             gbSize.ResumeLayout(false);
             gbSize.PerformLayout();
             gbDifficulty.ResumeLayout(false);

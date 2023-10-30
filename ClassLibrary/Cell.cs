@@ -42,5 +42,14 @@ namespace ClassLibrary
             IsVisited = false; 
             IsLive = false;
         }
+
+        /// <summary>
+        /// String Representation of Cell using LiveNeighbors int value. (Debugging)
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return liveNeighbors.ToString();
+        }
     }
 }
