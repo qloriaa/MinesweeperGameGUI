@@ -1,6 +1,8 @@
 using ClassLibrary;
 using System.Drawing;
 
+//Changed difficulty to string type
+
 namespace MinesweeperGameGUI
 {
     public partial class frmStartUp : Form
@@ -28,8 +30,8 @@ namespace MinesweeperGameGUI
         /// <param name="e"></param>
         private void btnNewGame_Click(object sender, EventArgs e)
         {
-            int size = 0,
-                difficulty = 0;
+            int size = 0;
+            string difficulty = string.Empty;
 
             // Get selected size
             if (rbSmall.Checked)
@@ -48,15 +50,15 @@ namespace MinesweeperGameGUI
             // Get selected difficulty
             if (rbEasy.Checked)
             {
-                difficulty = int.Parse(rbEasy.Tag.ToString());
+                difficulty = rbEasy.Tag.ToString();
             }
             else if (rbMedium.Checked)
             {
-                difficulty = int.Parse(rbMedium.Tag.ToString());
+                difficulty = rbMedium.Tag.ToString();
             }
             else if (rbHard.Checked)
             {
-                difficulty = int.Parse(rbHard.Tag.ToString());
+                difficulty = rbHard.Tag.ToString();
             }
 
             // Open new form & close this form

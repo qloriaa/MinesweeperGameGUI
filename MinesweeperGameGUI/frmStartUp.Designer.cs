@@ -113,8 +113,7 @@
             rbHard.Name = "rbHard";
             rbHard.Size = new Size(199, 40);
             rbHard.TabIndex = 2;
-            rbHard.TabStop = true;
-            rbHard.Tag = "50";
+            rbHard.Tag = "Hard";
             rbHard.Text = "Hard (50%)";
             rbHard.UseVisualStyleBackColor = true;
             // 
@@ -126,7 +125,7 @@
             rbEasy.Size = new Size(195, 40);
             rbEasy.TabIndex = 1;
             rbEasy.TabStop = true;
-            rbEasy.Tag = "10";
+            rbEasy.Tag = "Easy";
             rbEasy.Text = "Easy (10%)";
             rbEasy.UseVisualStyleBackColor = true;
             // 
@@ -139,7 +138,7 @@
             rbMedium.Size = new Size(240, 40);
             rbMedium.TabIndex = 0;
             rbMedium.TabStop = true;
-            rbMedium.Tag = "30";
+            rbMedium.Tag = "Medium";
             rbMedium.Text = "Medium (30%)";
             rbMedium.UseVisualStyleBackColor = true;
             // 

@@ -15,7 +15,7 @@ namespace MinesweeperGameGUI
         /// </summary>
         /// <param name="size"></param>
         /// <param name="difficulty"></param>
-        public frmGame(int size, int difficulty)
+        public frmGame(int size, string difficulty)         // changed difficulty type
         {
             InitializeComponent();
 
@@ -23,16 +23,16 @@ namespace MinesweeperGameGUI
             gameboard = new Board(size, difficulty);
             btnGrid = new Button[gameboard.Size, gameboard.Size];
 
-            // Set difficulty label
+            // Set difficulty label             // Changed switch arg type
             switch (difficulty)
             {
-                case 10:
+                case "Easy":
                     lblDifficulty.Text = "Easy Difficulty";
                     break;
-                case 30:
+                case "Medium":
                     lblDifficulty.Text = "Medium Difficulty";
                     break;
-                case 50:
+                case "Hard":
                     lblDifficulty.Text = "Hard Difficulty";
                     break;
                 default:
@@ -198,7 +198,13 @@ namespace MinesweeperGameGUI
 
             DisplayTopScores();
         }
-
+        
+        /// <summary>
+        /// Get the image file name according to the Cell's number of live neighbors
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="col"></param>
+        /// <returns></returns>
         private string GetImgName(int row, int col)
         {
             int liveNeighbors = -1;

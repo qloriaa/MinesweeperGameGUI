@@ -23,10 +23,11 @@ namespace ClassLibrary
         public PlayerStats(int seconds, Board board)
         {
             TimeInSeconds = seconds;
-            Difficulty = board.Difficulty;
+            Difficulty = (int)board.PercentLive;
             BoardSize = board.Size;
 
-            CalculateScore();
+            // If error getting Difficulty in BOard.cs, flag value of percentLive is -1
+            CalculateScore(board.PercentLive);
         }
 
         /// <summary>
@@ -49,32 +50,20 @@ namespace ClassLibrary
         /// <summary>
         /// Calculate Player's score based on board size and difficulty
         /// </summary>
-        public void CalculateScore()
+        public void CalculateScore(int percent)
         {
             //Base score
-            Score = (1000 / TimeInSeconds);
+            Score = (10000 / TimeInSeconds);
 
-            // Score is calculated based on the size of board and Difficulty
-            // Easy
-            if (Difficulty == 10 ) {
-                Score = (int)(Score * BoardSize * 0.5);
-            }
-            // Medium
-            else if (Difficulty == 30)
+            //   percent flag value is -1 if there was an error getting the Difficulty
+            if (percent > 0)
             {
-                Score = (int)(Score * BoardSize * 0.70);
+                // Score is calculated based on the size of board and Difficulty
+                Score = (int)(Score * BoardSize * (Difficulty / 2));
             }
-            // Hard
-            else if (Difficulty == 50)
-            {
-                Score = (int)(Score * BoardSize * 0.85);
-            }   
-            // ERROR --! 
             else
-            {   
-                // Flag value
-                Score = -1;
-
+            {
+                Score = -1;  // Flag value
             }
         }
 
@@ -94,15 +83,8 @@ namespace ClassLibrary
         /// <returns></returns>
         public override string ToString()
         {
-            // Set string difficulty to display
-            string difficulty = string.Empty;
-
-            if (Difficulty == 10)
-                difficulty = "Easy";
-            else if (Difficulty == 30)
-                difficulty = "Medium";
-            else if (Difficulty == 50)
-                difficulty = "Hard"; 
+            // Set string difficulty to display, Get the string value of the enum Difficulty
+            string difficulty = (string)((Board.Difficulty)Difficulty).ToString();
 
             return (Initials + " --- " + Score + " --- " + difficulty);
         }

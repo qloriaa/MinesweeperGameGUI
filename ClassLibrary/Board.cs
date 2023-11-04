@@ -14,10 +14,15 @@ namespace ClassLibrary
         // ----- ATTRIBUTES -----
         public int Size { get; set; }
         public Cell[,] Grid { get; set; }
-        public int Difficulty { get; set; }
         public int SafeCells { get; set; }
         public int LiveCells { get; set; }
-
+        public int PercentLive { get; set; }
+        // enum allows the percentage for each difficulty level to be changed from single location
+        public enum Difficulty {
+            Easy = 10,
+            Medium = 30,
+            Hard = 50
+        }
 
         // ----- CONSTRUCTORS -----
 
@@ -25,11 +30,27 @@ namespace ClassLibrary
         /// Initialize board
         /// </summary>
         /// <param name="size"></param>
-        public Board(int size, int difficulty)
+        public Board(int size, string difficulty)
         {
             // Set length/height size of board
             Size = size;
-            Difficulty = difficulty;
+
+            // Get percentage of live cells on board          
+            switch (difficulty)
+            {
+                case "Easy":
+                    PercentLive = (int)Difficulty.Easy; 
+                    break;
+                case "Medium":
+                    PercentLive = (int)Difficulty.Medium;
+                    break;
+                case "Hard":
+                    PercentLive = (int)Difficulty.Hard;
+                    break;
+                default:
+                    PercentLive = -1;  // Flag
+                    break;
+            }
 
             // Create a square Grid board
             Grid = new Cell[Size, Size];
@@ -56,7 +77,7 @@ namespace ClassLibrary
         public void SetUpLiveNeighbors()
         {
             // Calculate number of live bombs based on difficulty percentage
-            LiveCells = (Size * Size * Difficulty) / 100;
+            LiveCells = (Size * Size * PercentLive) / 100;
 
             // Calculate and update the total number of cells not live ("safe cells")
             SafeCells = (Size * Size) - LiveCells;
