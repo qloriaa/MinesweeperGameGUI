@@ -101,9 +101,10 @@
             // 
             // btnNewGame
             // 
-            btnNewGame.BackColor = SystemColors.ButtonHighlight;
+            btnNewGame.BackColor = Color.RoyalBlue;
             btnNewGame.FlatAppearance.BorderSize = 2;
             btnNewGame.FlatStyle = FlatStyle.Popup;
+            btnNewGame.ForeColor = SystemColors.ButtonHighlight;
             btnNewGame.Location = new Point(1303, 743);
             btnNewGame.Name = "btnNewGame";
             btnNewGame.Size = new Size(186, 73);
@@ -115,7 +116,7 @@
             // lblTimer
             // 
             lblTimer.AutoSize = true;
-            lblTimer.BackColor = Color.YellowGreen;
+            lblTimer.BackColor = Color.Transparent;
             lblTimer.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblTimer.Location = new Point(1251, 671);
             lblTimer.Margin = new Padding(4, 0, 4, 0);
@@ -148,6 +149,7 @@
             Controls.Add(pnlBoard);
             DoubleBuffered = true;
             Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 3, 4, 3);
             Name = "frmGame";
             Padding = new Padding(50);

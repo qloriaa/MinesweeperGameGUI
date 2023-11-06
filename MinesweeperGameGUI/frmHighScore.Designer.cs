@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHighScore));
             lblBoardSize = new Label();
             lbTopScores = new ListBox();
             lblInitials = new Label();
@@ -38,16 +39,19 @@
             // lblBoardSize
             // 
             lblBoardSize.AutoSize = true;
-            lblBoardSize.Font = new Font("Times New Roman", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            lblBoardSize.BackColor = Color.Transparent;
+            lblBoardSize.Font = new Font("Times New Roman", 13.875F, FontStyle.Bold, GraphicsUnit.Point);
+            lblBoardSize.ForeColor = SystemColors.ActiveCaptionText;
             lblBoardSize.Location = new Point(102, 50);
             lblBoardSize.Margin = new Padding(4, 0, 4, 0);
             lblBoardSize.Name = "lblBoardSize";
-            lblBoardSize.Size = new Size(503, 43);
+            lblBoardSize.Size = new Size(509, 42);
             lblBoardSize.TabIndex = 0;
             lblBoardSize.Text = "Classic 8 x 8 Board Top Scores:";
             // 
             // lbTopScores
             // 
+            lbTopScores.BackColor = Color.WhiteSmoke;
             lbTopScores.Font = new Font("Times New Roman", 14F, FontStyle.Regular, GraphicsUnit.Point);
             lbTopScores.FormattingEnabled = true;
             lbTopScores.ItemHeight = 42;
@@ -61,6 +65,7 @@
             // lblInitials
             // 
             lblInitials.AutoSize = true;
+            lblInitials.BackColor = Color.Transparent;
             lblInitials.Location = new Point(102, 119);
             lblInitials.Name = "lblInitials";
             lblInitials.Size = new Size(277, 36);
@@ -80,8 +85,9 @@
             // 
             // btnInitials
             // 
-            btnInitials.BackColor = SystemColors.ButtonShadow;
+            btnInitials.BackColor = Color.RoyalBlue;
             btnInitials.Font = new Font("Times New Roman", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnInitials.ForeColor = SystemColors.ButtonHighlight;
             btnInitials.Location = new Point(528, 115);
             btnInitials.Name = "btnInitials";
             btnInitials.Size = new Size(77, 46);
@@ -95,13 +101,17 @@
             // 
             AutoScaleDimensions = new SizeF(18F, 36F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(705, 430);
             Controls.Add(btnInitials);
             Controls.Add(txtInitials);
             Controls.Add(lblInitials);
             Controls.Add(lbTopScores);
             Controls.Add(lblBoardSize);
+            DoubleBuffered = true;
             Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 3, 4, 3);
             Name = "frmHighScore";
             StartPosition = FormStartPosition.CenterScreen;

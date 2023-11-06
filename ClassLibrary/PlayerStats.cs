@@ -89,6 +89,10 @@ namespace ClassLibrary
             return (Initials + " --- " + Score + " --- " + difficulty);
         }
 
+        /// <summary>
+        /// Create a string for the PlayerStats to save to text file
+        /// </summary>
+        /// <returns></returns>
         public string SaveStats()
         {
             return (string.Format("{0}- {1}- {2}- {3}- {4}", 

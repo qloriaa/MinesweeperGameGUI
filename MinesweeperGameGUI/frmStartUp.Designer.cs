@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStartUp));
             gbSize = new GroupBox();
             rbLarge = new RadioButton();
             rbSmall = new RadioButton();
@@ -43,6 +44,7 @@
             // 
             // gbSize
             // 
+            gbSize.BackColor = Color.Transparent;
             gbSize.Controls.Add(rbLarge);
             gbSize.Controls.Add(rbSmall);
             gbSize.Controls.Add(rbClassic);
@@ -94,6 +96,7 @@
             // 
             // gbDifficulty
             // 
+            gbDifficulty.BackColor = Color.Transparent;
             gbDifficulty.Controls.Add(rbHard);
             gbDifficulty.Controls.Add(rbEasy);
             gbDifficulty.Controls.Add(rbMedium);
@@ -144,27 +147,31 @@
             // 
             // btnNewGame
             // 
+            btnNewGame.BackColor = Color.RoyalBlue;
+            btnNewGame.ForeColor = SystemColors.ButtonFace;
             btnNewGame.Location = new Point(294, 412);
             btnNewGame.Name = "btnNewGame";
             btnNewGame.Size = new Size(327, 56);
             btnNewGame.TabIndex = 4;
             btnNewGame.Text = "Start New Game";
-            btnNewGame.UseVisualStyleBackColor = true;
+            btnNewGame.UseVisualStyleBackColor = false;
             btnNewGame.Click += btnNewGame_Click;
             // 
             // frmStartUp
             // 
             AutoScaleDimensions = new SizeF(18F, 36F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(942, 504);
             Controls.Add(btnNewGame);
             Controls.Add(gbDifficulty);
             Controls.Add(gbSize);
             Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 3, 4, 3);
             Name = "frmStartUp";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "*5";
+            Text = "Minesweeper";
             gbSize.ResumeLayout(false);
             gbSize.PerformLayout();
             gbDifficulty.ResumeLayout(false);

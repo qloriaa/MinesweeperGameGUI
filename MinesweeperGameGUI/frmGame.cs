@@ -112,32 +112,56 @@ namespace MinesweeperGameGUI
             if (e.Button == MouseButtons.Right)
             {
                 imgName = "flag.png";
+                DisplayImage(imgName, btnGrid[row, col]);
 
             }
             else //left or middle click
             {
-                imgName = GetImgName(row, col);
-            }
+                // Recursive method call to display multiple cells (if applicable)
+                gameboard.FloodFill(row, col);
 
-            // Set Image
-            Bitmap image = Bitmap.FromFile(imgFolderLoc + imgName) as Bitmap;
-            Bitmap resized = new Bitmap(image, new Size((sender as Button).Width, (sender as Button).Height));
-            btnGrid[row, col].Image = resized;
-            btnGrid[row, col].FlatStyle = FlatStyle.Flat;
+                // check every cell if isVisited
+                for (row = 0; row < gameboard.Size; row++)
+                {
+                    for (col = 0; col < gameboard.Size; col++)
+                    {
+                        if (gameboard.Grid[row, col].IsVisited)
+                        {
+                            // Reveal number of live neighbors to user
+                            imgName = GetImgName(row, col);
+                            DisplayImage(imgName, btnGrid[row, col]);
 
-            // Mine revelaed?
-            if (imgName == "explosion.png")
-            {
-                EndGame("GameOver.png", (sender as Button).Width);
-            }
+                            // Mine revealed?
+                            if (imgName == "explosion.png")
+                            {
+                                EndGame("GameOver.png", (sender as Button).Width);
+                            }
 
-            // All safe cells revealed?
-            if (gameboard.AllCellsVisited())
-            {
-                EndGame("YouWin.png", (sender as Button).Width);
+                            // All safe cells revealed?
+                            if (gameboard.AllCellsVisited())
+                            {
+                                EndGame("YouWin.png", (sender as Button).Width);
+                            }
+                        }
+                    }
+                }
             }
         }
 
+        /// <summary>
+        /// Display the image with the value of live neighbors for the button
+        /// </summary>
+        /// <param name="imgName"></param>
+        /// <param name="btn"></param>
+        private void DisplayImage(string imgName, Button btn)
+        {
+            // Set Image
+            Bitmap image = Bitmap.FromFile(imgFolderLoc + imgName) as Bitmap;
+            Bitmap resized = new Bitmap(image, btn.Width, btn.Height);
+            btn.Image = resized;
+            btn.FlatStyle = FlatStyle.Flat;
+
+        }
 
         /// <summary>
         /// End Game with Game Over, Display all live cells as mines
@@ -198,7 +222,7 @@ namespace MinesweeperGameGUI
 
             DisplayTopScores();
         }
-        
+
         /// <summary>
         /// Get the image file name according to the Cell's number of live neighbors
         /// </summary>
@@ -255,12 +279,20 @@ namespace MinesweeperGameGUI
             this.Close();
         }
 
+        /// <summary>
+        /// Display new form to display the top scores (for this board size)
+        /// </summary>
         public void DisplayTopScores()
         {
             frmHighScore highScores = new frmHighScore(gameboard, time.Elapsed.Seconds);
             highScores.ShowDialog();
         }
 
+        /// <summary>
+        /// Update timer label after every second (1000ms)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer_Tick(object sender, EventArgs e)
         {
             lblTimer.Text = "Time Elapsed:  " + time.Elapsed.ToString(@"m\:ss");

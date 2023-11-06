@@ -61,6 +61,7 @@ namespace MinesweeperGameGUI
             }
             else
             {
+                // If no new score, stats do not need to be updated just displayed
                 DisplayTopScores();
             }
         }
@@ -188,10 +189,10 @@ namespace MinesweeperGameGUI
             {
                 otherTopScores.AddRange(AllTopScores.Where(score => score.StartsWith("5") || score.StartsWith("8")));
             }
-            
+
             // Convert the new Top scores for this board size to string type list
             List<string> updatedScores = new List<string>();
-            
+
             foreach (PlayerStats player in topScores)
             {
                 string updateLine = player.SaveStats();
